@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="210.0" styleClass="card">
+         <children>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0">
+               <children>
+                  <HBox maxWidth="1.7976931348623157E308" prefWidth="210.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 4.0 4.0 0 0;">
+                     <children>
+                        <JFXButton maxWidth="-Infinity" prefWidth="66.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="BACKWARD" size="25" style="-fx-fill: WHITE;" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefWidth="67.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PLAY" size="25.0" style="-fx-fill: WHITE;" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton prefWidth="66.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="FORWARD" size="25" style="-fx-fill: WHITE;" />
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox style="-fx-background-color: #42a5f5;">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="110.0" text="Alive Color" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <JFXColorPicker prefWidth="83.0" style="-fx-effect: NONE; -fx-font-size: 16px;">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXColorPicker>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="8.0" right="8.0" top="2.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</Pane>

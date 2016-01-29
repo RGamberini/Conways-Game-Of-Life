@@ -1,0 +1,9 @@
+.alive {
+    -fx-background-color: BLACK;
+}
+.dead {
+    -fx-background-color: WHITE;
+}
+.active {
+    -fx-background-color: WHITE;
+}
