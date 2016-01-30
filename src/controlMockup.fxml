@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
@@ -10,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="210.0" styleClass="card">
+      <Pane layoutX="8.0" layoutY="14.0" prefHeight="200.0" prefWidth="225.0" styleClass="card">
          <children>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0">
                <children>
@@ -33,21 +34,31 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox style="-fx-background-color: #42a5f5;">
+                  <HBox>
                      <children>
-                        <Label prefHeight="38.0" prefWidth="110.0" text="Alive Color" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="38.0" prefWidth="80.0" text="Alive Color">
                            <font>
                               <Font size="16.0" />
                            </font>
-                        </Label>
-                        <JFXColorPicker prefWidth="83.0" style="-fx-effect: NONE; -fx-font-size: 16px;">
                            <HBox.margin>
-                              <Insets />
+                              <Insets right="16.0" />
                            </HBox.margin>
-                        </JFXColorPicker>
+                        </Label>
+                        <Pane prefHeight="38.0" prefWidth="113.0" styleClass="card">
+                           <children>
+                              <JFXButton prefHeight="38.0" text="#FA8C32" textFill="#000000a4">
+                                 <graphic>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="25.0" />
+                                 </graphic>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </Pane>
                      </children>
                      <VBox.margin>
-                        <Insets left="8.0" right="8.0" top="2.0" />
+                        <Insets left="8.0" right="8.0" top="4.0" />
                      </VBox.margin>
                   </HBox>
                </children>

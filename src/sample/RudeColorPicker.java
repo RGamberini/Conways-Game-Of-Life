@@ -17,6 +17,6 @@ public class RudeColorPicker extends JFXColorPicker {
     }
 
     @Override protected Skin<?> createDefaultSkin() {
-        return new RudeColorPickerSkin(this);
+        return new IndependantColorPickerSkin(this);
     }
 }
