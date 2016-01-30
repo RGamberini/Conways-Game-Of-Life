@@ -7,3 +7,36 @@
 .active {
     -fx-background-color: WHITE;
 }
+.card {
+	-fx-background-color: rgb(255.0, 255.0, 255.0);
+	-fx-background-radius: 4.0;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,
+		1.5);
+	-fx-padding: 16 16 16 16;
+}
+.card .label .text {
+    -fx-fill: rgba(0,0,0,.68);
+}
+.buttonBar {
+    -fx-background-color: #3F51B5;
+    -fx-background-radius: 4.0 4.0 0 0;
+}
+.buttonBar JFXButton FontAwesomeIconView {
+    -fx-fill: WHITE;
+}
+
+.red-slider > .thumb {
+	-fx-stroke: #F7412D;
+	-fx-stroke-width: 1.0;
+}
+
+.green-slider > .thumb {
+	-fx-stroke: #47B04B;
+	-fx-stroke-width: 1.0;
+}
+
+.blue-slider > .thumb {
+	-fx-stroke: #1194F6;
+	-fx-stroke-width: 1.0;
+}
+
