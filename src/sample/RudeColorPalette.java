@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PopupControl;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -21,17 +22,16 @@ import javafx.scene.text.TextAlignment;
  * Created by Nick on 1/28/2016.
  */
 public class RudeColorPalette extends Pane {
-    ObjectProperty<Color> color;
     IntegerProperty[] rgbValues;
 
-    public RudeColorPalette(ColorPicker colorPicker) {
+    public RudeColorPalette(ObjectProperty<Color> color) {
+
         this.setPrefHeight(480);
         this.setPrefWidth(300);
         this.setMaxSize(300, 480);
         this.getStyleClass().add("card");
 
         rgbValues = new SimpleIntegerProperty[3];
-        color = new SimpleObjectProperty<>(Color.valueOf("da0058"));
         System.out.println((int) (color.get().getBlue() * 255));
 
         rgbValues[0] = new SimpleIntegerProperty((int) (color.get().getRed() * 255));
@@ -41,6 +41,7 @@ public class RudeColorPalette extends Pane {
 
         VBox innerVBox = new VBox();
         innerVBox.setPrefSize(300, 480);
+        innerVBox.setMaxSize(300, 480);
         this.getChildren().add(innerVBox);
 
         Rectangle colorSwatch = new Rectangle();
@@ -58,6 +59,7 @@ public class RudeColorPalette extends Pane {
             JFXSlider slider = new JFXSlider(0, 255, rgbValues[i].get());
             VBox.setMargin(slider, new Insets(42, 0, 0, 0));
             slider.setPadding(new Insets(0, 4, 0, 4));
+            slider.setMaxWidth(300);
             innerVBox.getChildren().add(slider);
             slider.getStyleClass().add(colors[i]+"-slider");
 
@@ -66,7 +68,6 @@ public class RudeColorPalette extends Pane {
 
             rgbValues[i].addListener((o, oldVal, newVal) -> {
                 color.setValue(Color.rgb(rgbValues[0].get(), rgbValues[1].get(), rgbValues[2].get()));
-                colorPicker.setValue(color.get());
             });
         }
 
@@ -89,17 +90,5 @@ public class RudeColorPalette extends Pane {
         colorName.setFont(new Font(14));
         colorName.setStyle("-fx-font-weight: bold;");
         footerPane.getChildren().add(colorName);
-    }
-
-    public void setPopupControl(PopupControl pc) {
-
-    }
-
-    public void updateSelection(Color color) {
-
-    }
-
-    public boolean isCustomColorDialogShowing() {
-        return false;
     }
 }

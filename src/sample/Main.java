@@ -12,13 +12,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Board model = new Board(25, new GameOfLife(),
-                ImageParser.parseImage("blank.bmp"));
+                ImageParser.parseImage("glider.bmp"));
         GameOfLifeDisplay display = new GameOfLifeDisplay(model);
 
         Button button = new Button("Tick");
         button.setOnAction((event -> display.playing.setValue(!display.playing.get())));
 
-        StackPane stackPane = new StackPane(display, new RudeColorPicker());
+        StackPane stackPane = new StackPane(display, new ControlDisplay(display));
 
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(stackPane, 550, 550);

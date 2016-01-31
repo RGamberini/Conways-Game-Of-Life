@@ -1,19 +1,28 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXColorPicker;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+
+import java.util.HashMap;
 
 /**
  * Created by Nick on 1/28/2016.
  */
 public class ControlDisplay extends Pane {
-    public ControlDisplay() {
+    HashMap<String, JFXButton> buttons;
+    GameOfLifeDisplay display;
+    public ControlDisplay(GameOfLifeDisplay display) {
         super();
+        this.buttons = new HashMap<>(3);
+        this.display = display;
+
         this.getStyleClass().add("card");
         this.setPrefWidth(210);
         this.setPrefHeight(200);
@@ -40,11 +49,17 @@ public class ControlDisplay extends Pane {
             button.setPrefWidth(70);
             HBox.setHgrow(button, Priority.ALWAYS);
 
+            buttons.put(buttonName, button);
             buttonBar.getChildren().add(button);
         }
         innerVBox.getChildren().add(buttonBar);
 
-        innerVBox.getChildren().add(new RudeColorPicker());
+        innerVBox.getChildren().add(new ColorPicker(Color.AQUA));
+
+        buttons.get("PLAY").setOnMouseClicked((event) -> {
+            display.playing.set(!display.playing.get());
+        });
+
 
     }
 }
