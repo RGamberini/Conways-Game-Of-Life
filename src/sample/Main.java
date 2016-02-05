@@ -1,12 +1,9 @@
 package sample;
 
 import com.jfoenix.controls.JFXDecorator;
-import com.jfoenix.controls.JFXDialog;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -19,7 +16,7 @@ public class Main extends Application {
         GameOfLifeDisplay display = new GameOfLifeDisplay(model);
 
 //        StackPane stackPane = new StackPane(display, new ControlDisplay(display));
-        JFXDecorator prettyWindow = new JFXDecorator(primaryStage, new NewControlDisplay(display));
+        JFXDecorator prettyWindow = new JFXDecorator(primaryStage, new ControlDisplay(display));
         HBox buttonContainer = (HBox) prettyWindow.getChildren().get(0);
         buttonContainer.getChildren().remove(0);
         buttonContainer.getChildren().remove(1);

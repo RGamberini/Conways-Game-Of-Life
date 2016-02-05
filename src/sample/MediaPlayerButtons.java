@@ -18,7 +18,7 @@ import javafx.scene.layout.Priority;
 public class MediaPlayerButtons extends HBox {
     public JFXButton STEPBACKWARD, PLAYPAUSE, STEPFORWARD;
     private int buttonSize = 48;
-    public MediaPlayerButtons() {
+    public MediaPlayerButtons(GameOfLifeDisplay display) {
         STEPBACKWARD = newButton("STEP_BACKWARD");
         PLAYPAUSE = newButton("PLAY");
         STEPFORWARD = newButton("STEP_FORWARD");
@@ -26,6 +26,31 @@ public class MediaPlayerButtons extends HBox {
         this.getChildren().addAll(STEPBACKWARD, PLAYPAUSE, STEPFORWARD);
         this.setAlignment(Pos.CENTER);
         PLAYPAUSE.setPadding(new Insets(0, 0, 0, 5));
+
+        display.playing.addListener((o, oldVal, newVal) -> {
+            FontAwesomeIconView icon = (FontAwesomeIconView) PLAYPAUSE.getGraphic();
+            if (!newVal) {
+                icon.setGlyphName("PLAY");
+                icon.setSize("32");
+                PLAYPAUSE.setPadding(new Insets(0, 0, 0, 5));
+            }
+            else {
+                icon.setGlyphName("PAUSE");
+                icon.setSize("28");
+                PLAYPAUSE.setPadding(new Insets(0, 0, 0, 0));
+            }
+        });
+
+        PLAYPAUSE.setOnMouseClicked((event) -> display.playing.set(!display.playing.get()));
+        STEPFORWARD.setOnMouseClicked((event) -> {
+            display.playing.set(false);
+            display.step();
+        });
+
+        STEPBACKWARD.setOnMouseClicked((event) -> {
+            display.playing.set(false);
+            display.stepBack();
+        });
     }
 
     private JFXButton newButton(String buttonName) {

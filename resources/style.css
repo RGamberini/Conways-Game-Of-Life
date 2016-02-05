@@ -20,6 +20,7 @@ JFXToolbar JFXButton FontAwesomeIconView {
 JFXToolbar JFXButton {
     -fx-background-color: derive(#5264AE,-20%);
     -fx-background-radius: 90px;
+    -fx-cursor: hand;
 }
 
 .red-slider > .thumb {

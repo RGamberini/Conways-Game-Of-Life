@@ -96,4 +96,12 @@ public class GameOfLifeDisplay extends GridPane{
         if (newVal) timer.play();
         else timer.stop();
     }
+
+    public void step() {
+        model.step();
+    }
+
+    public void stepBack() {
+        model.stepBack();
+    }
 }

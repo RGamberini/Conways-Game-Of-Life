@@ -5,8 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Created by Rudy Gamberini on 1/19/2016.
@@ -15,12 +14,14 @@ public class Board {
     public int size;
     public Rule rule;
     //public State currentState;
+    private Stack<State> pastStates;
     public ObjectProperty<State> currentState;
 
     public Board(int size, Rule rule) {
         this.size = size;
         this.rule = rule;
         this.currentState = new SimpleObjectProperty<>(new State(this));
+        pastStates = new Stack<>();
     }
 
     public Board(int size, Rule rule, boolean[][] initialState) {
@@ -30,6 +31,7 @@ public class Board {
 
 
     public void step() {
+        pastStates.add(currentState.get());
         HashSet<Point> activeCells = currentState.get().activeCells;
         State nextState = new State(this);
         for (Point activeCell: activeCells)
@@ -37,16 +39,14 @@ public class Board {
         this.currentState.setValue(nextState);
     }
 
-    public boolean get(Point point) {
-        return this.currentState.get().get(point);
+    public void stepBack() {
+        try {
+            this.currentState.setValue(pastStates.pop());
+        } catch (EmptyStackException ignored) {}
+
     }
 
-    public static void main(String[] args) {
-//        Point one = new Point(0, 0);
-//        Point two = new Point(-1, -1);
-//        one.constrainedAdd(two, 25);
-//
-//        System.out.println(one);
-        System.out.println(ImageParser.parseImage("blank.bmp"));
+    public boolean get(Point point) {
+        return this.currentState.get().get(point);
     }
 }
