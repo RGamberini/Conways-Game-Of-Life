@@ -32,7 +32,6 @@ public class RudeColorPalette extends Pane {
         this.getStyleClass().add("card");
 
         rgbValues = new SimpleIntegerProperty[3];
-        System.out.println((int) (color.get().getBlue() * 255));
 
         rgbValues[0] = new SimpleIntegerProperty((int) (color.get().getRed() * 255));
         rgbValues[1] = new SimpleIntegerProperty((int) (color.get().getGreen() * 255));

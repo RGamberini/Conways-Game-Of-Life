@@ -12,13 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 /**
  * Created by Rudy Gamberini on 1/25/2016.
  */
 public class GameOfLifeDisplay extends GridPane{
-    private Pane[][] cellArray;
+    private Rectangle[][] cellArray;
     private Board model;
 
     //Timer stuff
@@ -26,20 +28,27 @@ public class GameOfLifeDisplay extends GridPane{
     public Timeline timer;
     public ObjectProperty<Duration> time;
 
+    public ObjectProperty<Color> aliveColor, deadColor, activeColor;
+
     public GameOfLifeDisplay(Board model) {
         super();
         this.model = model;
         int size = model.size;
-        cellArray = new Pane[size][size];
+        cellArray = new Rectangle[size][size];
+
+        aliveColor = new SimpleObjectProperty<>(Color.BLACK);
+        deadColor = new SimpleObjectProperty<>(Color.WHITE);
+        activeColor = new SimpleObjectProperty<>(Color.ALICEBLUE);
 
         //Initiate the graphical array of panes
         for (int x = 0; x < size; x++) {
             this.addColumn(0);
             for (int y = 0; y < size; y++) {
                 this.addRow(0);
-                Pane cell = new Pane();
-                cell.setPrefSize(22, 22);
-                cell.getStyleClass().add("dead");
+                Rectangle cell = new Rectangle();
+                cell.setHeight(22);
+                cell.setWidth(22);
+                cell.fillProperty().bind(deadColor);
                 cellArray[x][y] = cell;
                 this.add(cell, x, y);
             }
@@ -58,6 +67,13 @@ public class GameOfLifeDisplay extends GridPane{
         playing = new SimpleBooleanProperty(false);
         playing.addListener(this::playingChange);
 
+        this.setOnMouseClicked((event) -> {
+            int x = (int) (event.getX() / 22), y = (int) (event.getY() / 22);
+            Point p = new Point(x, y);
+            model.currentState.get().set(p, !model.get(p));
+            this.update(model.currentState.get());
+        });
+
         this.setGridLinesVisible(true);
     }
 
@@ -65,13 +81,12 @@ public class GameOfLifeDisplay extends GridPane{
         boolean[][] booleanState = state.getState();
         for (int x = 0; x < booleanState.length; x++) {
             for (int y = 0; y < booleanState[x].length; y++) {
-                cellArray[x][y].getStyleClass().clear();
-                if (booleanState[x][y]) cellArray[x][y].getStyleClass().add("alive");
-                else cellArray[x][y].getStyleClass().add("dead");
+                if (booleanState[x][y]) cellArray[x][y].fillProperty().bind(aliveColor);
+                else cellArray[x][y].fillProperty().bind(deadColor);
 
                 Point p = new Point(x, y);
                 if (state.activeCells.contains(p) && !state.get(p))
-                    cellArray[x][y].getStyleClass().add("active");
+                    cellArray[x][y].fillProperty().bind(activeColor);
             }
         }
     }

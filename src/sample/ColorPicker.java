@@ -32,8 +32,8 @@ public class ColorPicker extends Pane {
     private ParallelTransition show, hide;
 
 
-    public ColorPicker(Color defaultColor) {
-        color = new SimpleObjectProperty<>(defaultColor);
+    public ColorPicker(ObjectProperty<Color> defaultColor) {
+        color = defaultColor;
 
         mainButton = new JFXButton(colorDisplayName(color.get()));
         mainButton.setPrefWidth(113);
@@ -78,7 +78,7 @@ public class ColorPicker extends Pane {
 
         mainButton.setOnMouseClicked((event) -> {
             popup.show(this,
-                    p.getX() + this.getScene().getX() + this.getScene().getWindow().getX() + this.getWidth(),
+                    p.getX() + this.getScene().getX() + this.getScene().getWindow().getX() + getParent().getBoundsInLocal().getWidth(),
                     p.getY() + this.getScene().getY() + this.getScene().getWindow().getY());
         });
 
