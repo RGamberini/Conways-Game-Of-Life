@@ -3,12 +3,11 @@ package sample;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 /**
  * Created by Rudy Gamberini on 2/4/2016.
@@ -36,22 +35,28 @@ public class NewControlDisplay extends BorderPane {
         this.setCenter(new StackPane(display, drawer));
 
         MediaPlayerButtons mediaPlayerButtons = new MediaPlayerButtons();
-        toolBar.setCenter(mediaPlayerButtons);
         mediaPlayerButtons.PLAYPAUSE.setOnMouseClicked((event) -> {
             display.playing.set(!display.playing.get());
         });
-        initHamburger();
+        JFXRippler hamburger = initHamburger();
+
+        HBox.setHgrow(hamburger, Priority.NEVER);
+        HBox.setHgrow(mediaPlayerButtons, Priority.ALWAYS);
+        StackPane test = new StackPane(hamburger, mediaPlayerButtons);
+
+        test.prefWidthProperty().bind(toolBar.widthProperty());
+        test.minWidthProperty().bind(toolBar.widthProperty());
+
+        toolBar.setCenter(test);
     }
 
-    private void initHamburger() {
+    private JFXRippler initHamburger() {
         JFXHamburger hamburger = new JFXHamburger();
         HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(hamburger);
         burgerTask.setRate(-1);
 
         StackPane hamburgerContainer = new StackPane(hamburger);
         JFXRippler hamburgerRippler = new JFXRippler(hamburgerContainer, JFXRippler.RipplerMask.CIRCLE);
-
-        toolBar.setLeftItems(hamburgerRippler);
 
         drawer.setOnDrawingAction((e) -> {
             burgerTask.setRate(1);
@@ -65,12 +70,16 @@ public class NewControlDisplay extends BorderPane {
             burgerTask.play();
         });
 
-        hamburgerContainer.setOnMouseClicked((e)->{
+        hamburgerContainer.setOnMouseClicked((e) -> {
             if (counter == 0)
                 drawer.draw();
             else if (counter == 1)
                 drawer.hide();
             counter = -1;
         });
+
+        hamburger.setAlignment(Pos.CENTER_LEFT);
+
+        return hamburgerRippler;
     }
 }
