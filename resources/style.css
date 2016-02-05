@@ -13,12 +13,13 @@
     -fx-fill: rgba(0,0,0,.68);
     -fx-font-size: 16px;
 }
-.buttonBar {
-    -fx-background-color: derive(#5264AE,-20%);
-    -fx-background-radius: 4.0 4.0 0 0;
-}
-.buttonBar JFXButton FontAwesomeIconView {
+JFXToolbar JFXButton FontAwesomeIconView {
     -fx-fill: WHITE;
+}
+
+JFXToolbar JFXButton {
+    -fx-background-color: derive(#5264AE,-20%);
+    -fx-background-radius: 90px;
 }
 
 .red-slider > .thumb {
@@ -51,5 +52,45 @@
 .jfx-decorator .resize-border{
 	-fx-border-color:-fx-decorator-color;
 	-fx-border-width: 0 4 4 4;
+}
+.jfx-tool-bar{
+	-fx-font-size: 20.0;
+	-fx-font-weight: BOLD;
+	-fx-background-color: #5264AE;
+	-fx-pref-width: 100.0%;
+	-fx-pref-height: 64.0px;
+}
+
+.jfx-tool-bar HBox {
+	-fx-alignment:center;
+	-fx-spacing: 25.0;
+	-fx-padding: 0.0 10.0;
+}
+
+.jfx-tool-bar Label{
+	-fx-text-fill: WHITE;
+}
+
+.jfx-tool-bar .jfx-options-burger{
+	-fx-padding: 22px;
+}
+.jfx-tool-bar .jfx-options-burger StackPane{
+	-fx-pref-width:4px;
+}
+
+.jfx-tool-bar .jfx-rippler {
+	-fx-rippler-fill: WHITE;
+}
+.jfx-hamburger{
+	-fx-padding: 10.0;
+	-fx-spacing: 4px;
+	-fx-cursor: hand;
+}
+
+.jfx-hamburger StackPane{
+	-fx-pref-width: 30px;
+	-fx-pref-height: 4px;
+	-fx-background-color: #FFF ;
+	-fx-background-radius: 5px;
 }
 

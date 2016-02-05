@@ -14,18 +14,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Board model = new Board(36, new GameOfLife(),
+        Board model = new Board(25, new GameOfLife(),
                 ImageParser.parseImage("blank.bmp"));
         GameOfLifeDisplay display = new GameOfLifeDisplay(model);
 
-        StackPane stackPane = new StackPane(display, new ControlDisplay(display));
-        JFXDecorator prettyWindow = new JFXDecorator(primaryStage, stackPane);
+//        StackPane stackPane = new StackPane(display, new ControlDisplay(display));
+        JFXDecorator prettyWindow = new JFXDecorator(primaryStage, new NewControlDisplay(display));
         HBox buttonContainer = (HBox) prettyWindow.getChildren().get(0);
         buttonContainer.getChildren().remove(0);
         buttonContainer.getChildren().remove(1);
 
         primaryStage.setTitle("Hello World");
-        Scene scene = new Scene(prettyWindow, 801, 828);
+        Scene scene = new Scene(prettyWindow, 22*25 + 9, 22*25 + 100);
 //        scene.widthProperty().addListener((o, old, newV) -> {
 //            System.out.println("Width: " + newV);
 //        });
