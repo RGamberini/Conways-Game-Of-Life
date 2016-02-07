@@ -7,33 +7,44 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Created by Rudy Gamberini on 2/4/2016.
  */
-public class ControlDisplay extends BorderPane {
-    private int counter = 0;
+public class ControlDisplay extends StackPane {
     private JFXDrawer drawer;
     private JFXToolbar toolBar;
+    private BorderPane borderPane;
 
     public ControlDisplay(GameOfLifeDisplay display) {
+        borderPane = new BorderPane();
+
         toolBar = new JFXToolbar();
         VBox tempVBox = new VBox(toolBar);
-        this.setTop(tempVBox);
+        borderPane.setTop(tempVBox);
 
         drawer = new JFXDrawer();
         drawer.setDefaultDrawerSize(250.0);
         drawer.setDirection(JFXDrawer.DrawerDirection.LEFT);
-        drawer.setOnMouseClicked((event) -> {
-            if (!drawer.isShown()) display.fireEvent(event);
-        });
+//        drawer.setOnMouseClicked((event) -> {
+//            if (!drawer.isShown()) display.fireEvent(event);
+//        });
+        drawer.setOnDrawerClosed((event) -> drawer.setMouseTransparent(true));
+        drawer.setOnDrawerOpened((event) -> drawer.setMouseTransparent(false));
+        drawer.setMouseTransparent(true);
 
         StackPane sideContent = new StackPane(), content = new StackPane();
-        drawer.setSidePane(sideContent);
+        drawer.setSidePane(new Sidebar());
         drawer.setContent(content);
-        this.setCenter(new StackPane(display, drawer));
+        borderPane.setCenter(display);
 
         MediaPlayerButtons mediaPlayerButtons = new MediaPlayerButtons(display);
         Node hamburger = new HamburgerDrawer(drawer);
@@ -46,5 +57,6 @@ public class ControlDisplay extends BorderPane {
         invisibleHamburger.setMouseTransparent(true);
         invisibleHamburger.hamburger.setStyle("-fx-opacity: 0");
         toolBar.setRight(invisibleHamburger);
+        this.getChildren().add(new StackPane(borderPane, drawer));
     }
 }

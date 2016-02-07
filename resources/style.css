@@ -1,3 +1,9 @@
+@font-face {
+    src: url("Roboto-Thin.ttf");
+}
+.root .text {
+
+}
 .card {
 	-fx-background-color: rgb(255.0, 255.0, 255.0);
 	-fx-background-radius: 4.0;
@@ -18,7 +24,7 @@ JFXToolbar JFXButton FontAwesomeIconView {
 }
 
 JFXToolbar JFXButton {
-    -fx-background-color: derive(#5264AE,-20%);
+    -fx-background-color: derive(#4CAF50,-20%);
     -fx-background-radius: 90px;
     -fx-cursor: hand;
 }
@@ -45,7 +51,7 @@ JFXToolbar JFXButton {
 }
 
 .jfx-decorator {
-	-fx-decorator-color: derive(#5264AE,-20%);
+	-fx-decorator-color: derive(#4CAF50,-20%);
 }
 .jfx-decorator .jfx-decorator-buttons-container{
 	-fx-background-color:-fx-decorator-color;
@@ -54,10 +60,15 @@ JFXToolbar JFXButton {
 	-fx-border-color:-fx-decorator-color;
 	-fx-border-width: 0 4 4 4;
 }
+
+.jfx-decorator .text {
+    -fx-fill: WHITE;
+    -fx-font-size: 20.0;
+}
 .jfx-tool-bar{
 	-fx-font-size: 20.0;
 	-fx-font-weight: BOLD;
-	-fx-background-color: #5264AE;
+	-fx-background-color: #4CAF50;
 	-fx-pref-width: 100.0%;
 	-fx-pref-height: 64.0px;
 }
