@@ -1,20 +1,7 @@
 package sample;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.ToolBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  * Created by Rudy Gamberini on 2/4/2016.
@@ -42,20 +29,20 @@ public class ControlDisplay extends StackPane {
         drawer.setMouseTransparent(true);
 
         StackPane sideContent = new StackPane(), content = new StackPane();
-        drawer.setSidePane(new Sidebar());
+        drawer.setSidePane(new Sidebar(display, drawer));
         drawer.setContent(content);
         borderPane.setCenter(display);
 
         MediaPlayerButtons mediaPlayerButtons = new MediaPlayerButtons(display);
-        Node hamburger = new HamburgerDrawer(drawer);
+        StackPane hamburger = new SettingsButton(drawer);
 
         toolBar.setLeft(hamburger);
 
         toolBar.setCenter(mediaPlayerButtons);
 
-        HamburgerDrawer invisibleHamburger = new HamburgerDrawer(drawer);
+        SettingsButton invisibleHamburger = new SettingsButton(drawer);
         invisibleHamburger.setMouseTransparent(true);
-        invisibleHamburger.hamburger.setStyle("-fx-opacity: 0");
+        invisibleHamburger.icon.setStyle("-fx-opacity: 0");
         toolBar.setRight(invisibleHamburger);
         this.getChildren().add(new StackPane(borderPane, drawer));
     }

@@ -17,7 +17,7 @@ import javafx.scene.layout.Priority;
  */
 public class MediaPlayerButtons extends HBox {
     public JFXButton STEPBACKWARD, PLAYPAUSE, STEPFORWARD;
-    private int buttonSize = 48;
+
     public MediaPlayerButtons(GameOfLifeDisplay display) {
         STEPBACKWARD = newButton("STEP_BACKWARD");
         PLAYPAUSE = newButton("PLAY");
@@ -59,6 +59,9 @@ public class MediaPlayerButtons extends HBox {
         icon.setSize("32");
 
         JFXButton button = new JFXButton("", icon);
+        int buttonSize = 48;
+        button.getStyleClass().add("iconButton");
+        button.getStyleClass().add("mediaButton");
         button.setMinSize(buttonSize, buttonSize);
         button.setPrefSize(buttonSize, buttonSize);
         button.setMaxSize(buttonSize, buttonSize);

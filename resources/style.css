@@ -1,8 +1,5 @@
-@font-face {
-    src: url("Roboto-Thin.ttf");
-}
 .root .text {
-
+    -fx-font-family: "Verdana";
 }
 .card {
 	-fx-background-color: rgb(255.0, 255.0, 255.0);
@@ -11,22 +8,48 @@
 		1.5);
 	-fx-padding: 16 16 16 16;
 }
+
+.sidebarTitle {
+    -fx-font-size: 22px;
+}
+
+.sidebarSubTitle {
+    -fx-font-size: 16px;
+}
+
 .card .label .text {
     -fx-fill: rgba(0,0,0,.68);
+}
+
+.colorPickerLabel .text {
+    -fx-fill: rgba(0,0,0,.68);
+    -fx-font-size: 16px;
 }
 
 .card JFXButton .text {
     -fx-fill: rgba(0,0,0,.68);
     -fx-font-size: 16px;
 }
-JFXToolbar JFXButton FontAwesomeIconView {
+JFXButton FontAwesomeIconView {
     -fx-fill: WHITE;
 }
 
-JFXToolbar JFXButton {
-    -fx-background-color: derive(#4CAF50,-20%);
-    -fx-background-radius: 90px;
+JFXButton MaterialDesignIconView {
+    -fx-fill: WHITE;
+}
+
+JFXButton MaterialIconView {
+    -fx-fill: WHITE;
+}
+
+.iconButton {
+    -fx-background-radius: 180px;
+    -fx-background-color: #4CAF50;
     -fx-cursor: hand;
+}
+
+.mediaButton {
+    -fx-background-color: derive(#4CAF50,-20%);
 }
 
 .red-slider > .thumb {
@@ -46,8 +69,14 @@ JFXToolbar JFXButton {
 
 .divider {
     -fx-border-width: 1.0;
-    -fx-border-style: solid hidden solid hidden;
+    -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: rgb(0,0,0,.12);
+}
+
+.subheader .text {
+    -fx-fill: rgba(0,0,0,.58);
+    -fx-font-weight: BOLD;
+
 }
 
 .jfx-decorator {
@@ -61,10 +90,6 @@ JFXToolbar JFXButton {
 	-fx-border-width: 0 4 4 4;
 }
 
-.jfx-decorator .text {
-    -fx-fill: WHITE;
-    -fx-font-size: 20.0;
-}
 .jfx-tool-bar{
 	-fx-font-size: 20.0;
 	-fx-font-weight: BOLD;

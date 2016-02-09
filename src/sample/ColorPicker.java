@@ -36,7 +36,7 @@ public class ColorPicker extends Pane {
         color = defaultColor;
 
         mainButton = new JFXButton(colorDisplayName(color.get()));
-        mainButton.setPrefWidth(113);
+        mainButton.setPrefWidth(121);
         mainButton.setPrefHeight(38);
         color.addListener(((observable, oldValue, newValue) -> mainButton.setText(colorDisplayName(color.get()))));
 
@@ -52,8 +52,8 @@ public class ColorPicker extends Pane {
         mainButton.setGraphic(rectangle);
 
         this.getStyleClass().add("card");
-        this.setPrefSize(113, 38);
-        this.setMaxSize(113, 38);
+        this.setPrefSize(121, 38);
+        this.setMaxSize(121, 38);
         this.getChildren().add(mainButton);
 
         colorPalette = new RudeColorPalette(color);
@@ -78,7 +78,7 @@ public class ColorPicker extends Pane {
 
         mainButton.setOnMouseClicked((event) -> {
             popup.show(this,
-                    p.getX() + this.getScene().getX() + this.getScene().getWindow().getX() + getParent().getBoundsInLocal().getWidth(),
+                    p.getX() + this.getScene().getX() + this.getScene().getWindow().getX() + (getPrefWidth() * 2),
                     p.getY() + this.getScene().getY() + this.getScene().getWindow().getY());
         });
 
