@@ -38,6 +38,7 @@ public class ColorPicker extends Pane {
         mainButton = new JFXButton(colorDisplayName(color.get()));
         mainButton.setPrefWidth(121);
         mainButton.setPrefHeight(38);
+        this.setPrefHeight(38);
         color.addListener(((observable, oldValue, newValue) -> mainButton.setText(colorDisplayName(color.get()))));
 
 

@@ -1,33 +1,26 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXToolbar;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import com.jfoenix.controls.*;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
-import javafx.beans.property.ObjectProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Stack;
 
 /**
  * Created by Nick on 2/6/2016.
@@ -36,6 +29,13 @@ public class Sidebar extends VBox {
     private StackPane header;
 
     public Sidebar(GameOfLifeDisplay display, JFXDrawer drawer) {
+        VBox innerVBox = new VBox();
+        /**
+         * HEADER
+         * The header consists of an a background toolbar,
+         * title, subtitle, image and back button.
+         */
+
         JFXToolbar headerBG = new JFXToolbar();
         ImageView imageView = null;
         try {
@@ -46,6 +46,10 @@ public class Sidebar extends VBox {
         StackPane image = new StackPane(imageView);
         image.setAlignment(Pos.TOP_CENTER);
         StackPane.setMargin(image, new Insets(8, 0, 0, 0));
+
+        /**
+         * TITLE AND SUBTITLE
+         */
 
         Label title = new Label("Life");
         title.getStyleClass().add("sidebarTitle");
@@ -67,6 +71,10 @@ public class Sidebar extends VBox {
         this.getChildren().add(header);
         header.setPrefHeight(150);
 
+        /**
+         * BACK BUTTON
+         */
+
         MaterialIconView icon = new MaterialIconView(MaterialIcon.ARROW_BACK);
         icon.setSize("40");
         //icon.setStyle("-fx-font-weight: bold");
@@ -76,16 +84,78 @@ public class Sidebar extends VBox {
         backButton.setOnMouseClicked((event) -> drawer.hide());
         header.getChildren().add(backButton);
 
+        /**
+         * END HEADER
+         * START COLOR OPTIONS
+         */
+
         Label colorPickerSubHeader = new Label("Color Options");
         colorPickerSubHeader.getStyleClass().add("subheader");
         VBox.setMargin(colorPickerSubHeader, new Insets(10, 0, 6, 8));
-        this.getChildren().add(colorPickerSubHeader);
-        HBox[] colorPickerButtons = {newColorPicker("Alive Color", display.aliveColor),
-                newColorPicker("Dead Color", display.deadColor),
-                newColorPicker("Active Color", display.activeColor)};
-        this.getChildren().addAll(colorPickerButtons);
+        innerVBox.getChildren().add(colorPickerSubHeader);
+        VBox colorOptions = new VBox(10);
+        HBox[] colorPickerButtons = {new Option(display, "Alive Color", new ColorPicker(display.aliveColor)),
+                new Option(display, "Dead Color", new ColorPicker(display.deadColor)),
+                new Option(display, "Active Color", new ColorPicker(display.activeColor))};
+        colorOptions.getChildren().addAll(colorPickerButtons);
+        innerVBox.getChildren().add(colorOptions);
+
         colorPickerButtons[2].getStyleClass().add("divider");
         colorPickerButtons[2].setPadding(new Insets(0, 8, 10, 8));
+
+        /**
+         * END COLOR OPTIONS
+         * START SIMULATION OPTIONS
+         */
+
+        Label simulationOptionsSubHeader = new Label("Simulation Options");
+        simulationOptionsSubHeader.getStyleClass().add("subheader");
+        VBox.setMargin(simulationOptionsSubHeader, new Insets(10, 0, 16, 8));
+        innerVBox.getChildren().add(simulationOptionsSubHeader);
+
+        /**
+         * Sim Size Option
+         */
+        VBox simulationOptionsVBox = new VBox(16);
+        //Settings Speed, Simulation loop, Grid Size
+        JFXSlider slider = new JFXSlider();
+        slider.setMin(-10);
+        slider.setMax(10);
+        slider.setValue(display.time.getValue());
+        display.time.bind(slider.valueProperty());
+        slider.getStyleClass().add("sidebar-slider");
+        simulationOptionsVBox.getChildren().add(new Option(display, "Sim Speed", slider));
+
+        /**
+         * Edge Loop Option
+         */
+        JFXCheckBox checkBox = new JFXCheckBox();
+        checkBox.setSelected(display.borderLoop.getValue());
+        display.borderLoop.bind(checkBox.selectedProperty());
+        simulationOptionsVBox.getChildren().add(new Option(display, "Loop Edges", checkBox));
+
+        /**
+         * Sim Size Option
+         */
+        simulationOptionsVBox.getChildren().add(new SimulationSizeOption(display));
+
+        /**
+         * Saving and loading options
+         */
+        simulationOptionsVBox.getChildren().add(0, new SaveLoadOption(display));
+
+        /**
+         * Breakout button
+         */
+        simulationOptionsVBox.getChildren().add(1, new BreakOutOption(display));
+
+        innerVBox.getChildren().add(simulationOptionsVBox);
+        /**
+         * END SIMULATION OPTIONS
+         */
+        ScrollPane scrollPane = new ScrollPane(new StackPane(innerVBox));
+        scrollPane.getStyleClass().add("sidebar");
+        this.getChildren().add(scrollPane);
     }
 
     public JFXButton initBackButton() {
@@ -101,24 +171,5 @@ public class Sidebar extends VBox {
         button.setPrefSize(buttonSize, buttonSize);
         button.setMaxSize(buttonSize, buttonSize);
         return button;
-    }
-
-    public HBox newColorPicker(String name, ObjectProperty<Color> color) {
-        Label label = new Label(name);
-        //label.setFont(new Font());
-        label.getStyleClass().add("colorPickerLabel");
-        label.setAlignment(Pos.CENTER_LEFT);
-        label.setMaxHeight(Double.MAX_VALUE);
-        label.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(label, Priority.ALWAYS);
-        //HBox.setMargin(label, new Insets(0, 16, 0, 8));
-
-        StackPane colorPicker = new StackPane(new ColorPicker(color));
-        colorPicker.setAlignment(Pos.CENTER_RIGHT);
-
-        HBox hBox = new HBox(label, colorPicker);
-        hBox.setPrefHeight(55);
-        hBox.setPadding(new Insets(0, 8, 0, 8));
-        return hBox;
     }
 }

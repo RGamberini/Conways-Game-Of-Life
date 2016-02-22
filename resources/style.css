@@ -67,6 +67,67 @@ JFXButton MaterialIconView {
 	-fx-stroke-width: 1.0;
 }
 
+.sidebar-slider > .thumb {
+	-fx-stroke: -fx-decorator-color;
+	-fx-stroke-width: 1.0;
+}
+
+.breakout-button{
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-button-type: RAISED;
+    -fx-background-color: WHITE;
+    -fx-pref-width: 175px;
+    -fx-text-fill: rgba(0,0,0,.68);
+}
+
+.save-load-button{
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-button-type: RAISED;
+    -fx-background-color: WHITE;
+    -fx-pref-width: 80px;
+    -fx-text-fill: rgba(0,0,0,.68);
+}
+
+.sidebar .scroll-bar:horizontal .track,
+.sidebar .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+.sidebar .scroll-bar:horizontal .increment-button ,
+.sidebar .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+}
+
+.sidebar .scroll-bar:vertical .increment-button ,
+.sidebar .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+.sidebar  .scroll-bar .increment-arrow,
+.sidebar  .scroll-bar .decrement-arrow{
+    -fx-shape:" ";
+    -fx-padding:0;
+}
+
+.sidebar .scroll-bar:horizontal .thumb,
+.sidebar .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.jfx-toggle-button {
+	-fx-toggle-color: -fx-decorator-color;
+}
+
 .divider {
     -fx-border-width: 1.0;
     -fx-border-style: hidden hidden solid hidden;
@@ -86,7 +147,7 @@ JFXButton MaterialIconView {
 	-fx-background-color:-fx-decorator-color;
 }
 .jfx-decorator .resize-border{
-	-fx-border-color:-fx-decorator-color;
+	-fx-border-color: -fx-decorator-color;
 	-fx-border-width: 0 4 4 4;
 }
 

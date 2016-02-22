@@ -16,8 +16,13 @@ public class Point extends java.awt.Point {
         super(x, y);
     }
 
-    public void constrainedAdd(java.awt.Point point, int limit) {
-        x = (point.x + x + limit) % limit;
-        y = (point.y + y + limit) % limit;
+    public void addWithLoop(java.awt.Point point, int limit) {
+        x = (point.x + this.x + limit) % limit;
+        y = (point.y + this.y + limit) % limit;
+    }
+
+    public void addNoLoop(java.awt.Point point) {
+        x = this.x + point.x;
+        y = this.y + point.y;
     }
 }

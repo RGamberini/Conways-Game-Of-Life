@@ -25,7 +25,10 @@ public class ControlDisplay extends StackPane {
 //            if (!drawer.isShown()) display.fireEvent(event);
 //        });
         drawer.setOnDrawerClosed((event) -> drawer.setMouseTransparent(true));
-        drawer.setOnDrawerOpened((event) -> drawer.setMouseTransparent(false));
+        drawer.setOnDrawerOpened((event) -> {
+            drawer.setMouseTransparent(false);
+            display.playing.set(false);
+        });
         drawer.setMouseTransparent(true);
 
         StackPane sideContent = new StackPane(), content = new StackPane();

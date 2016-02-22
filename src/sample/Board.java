@@ -1,32 +1,53 @@
 package sample;
 
+import javafx.beans.Observable;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.HashSet;
+import java.util.Stack;
 
 /**
  * Created by Rudy Gamberini on 1/19/2016.
  */
 public class Board {
-    public int size;
+    public IntegerProperty size;
     public Rule rule;
     //public State currentState;
     private Stack<State> pastStates;
     public ObjectProperty<State> currentState;
 
     public Board(int size, Rule rule) {
-        this.size = size;
+        this.size = new SimpleIntegerProperty(size);
         this.rule = rule;
         this.currentState = new SimpleObjectProperty<>(new State(this));
         pastStates = new Stack<>();
+        this.size.addListener(this::resize);
     }
 
     public Board(int size, Rule rule, boolean[][] initialState) {
         this(size, rule);
         this.currentState = new SimpleObjectProperty<>(new State(this, initialState));
+    }
+
+    public void resize(Observable o, Number oldVal, Number newVal) {
+        int newSize = newVal.intValue(), oldSize = oldVal.intValue();
+        boolean[][] newState = new boolean[newSize][newSize];
+        for (int x = 0; x < newSize; x++) {
+            for (int y = 0; y < newSize; y++) {
+                Point p = new Point(x, y);
+                if (x < oldSize && y < oldSize)
+                    newState[x][y] = this.currentState.get().get(p);
+                else newState[x][y] = false;
+            }
+        }
+        currentState.setValue(new State(this, newState));
     }
 
 

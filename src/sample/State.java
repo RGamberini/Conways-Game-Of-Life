@@ -29,11 +29,15 @@ public class State {
     }
 
     public State(Board board, boolean[][] initialState) {
-        this(board.size, board.rule, initialState);
+        this(board.size.intValue(), board.rule, initialState);
     }
 
     public State(Board board) {
-        this(board.size, board.rule);
+        this(board.size.intValue(), board.rule);
+    }
+
+    public State(State state, boolean[][] initialState) {
+        this(state.size, state.rule, initialState);
     }
 
     public Point[] getNeighbors(Point center) {
@@ -42,23 +46,30 @@ public class State {
             Point direction = rule.DIRECTIONS[i];
 
             Point neighbor = new Point(center);
-            neighbor.constrainedAdd(direction, this.size);
+            if (rule.borderLoop.get()) neighbor.addWithLoop(direction, this.size);
+            else neighbor.addNoLoop(direction);
             result[i] = neighbor;
         }
         return result;
     }
 
     public boolean get(Point point) {
-        return state[point.x][point.y];
+        return inBounds(point) && state[point.x][point.y];
+    }
+
+    public boolean inBounds(Point point) {
+        return point.x < state.length && point.y < state[0].length && point.x >= 0 && point.y >= 0;
     }
 
     public void set(Point point, boolean value) {
-        if (value) {
-            activeCells.add(point);
-            activeCells.addAll(Arrays.asList(getNeighbors(point)));
-        }
+        if (inBounds(point)) {
+            if (value) {
+                activeCells.add(point);
+                activeCells.addAll(Arrays.asList(getNeighbors(point)));
+            }
 
-        this.state[point.x][point.y] = value;
+            this.state[point.x][point.y] = value;
+        }
     }
 
     public boolean[][] getState() {

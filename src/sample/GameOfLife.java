@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.property.SimpleBooleanProperty;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,6 +9,9 @@ import java.util.Arrays;
  * Created by Rudy Gamberini on 1/19/2016.
  */
 public class GameOfLife extends Rule {
+    public GameOfLife() {
+        borderLoop = new SimpleBooleanProperty(true);
+    }
     @Override
     public boolean handleActive(State state, Point activeCell) {
         Point[] neighbors = state.getNeighbors(activeCell);
