@@ -5,25 +5,22 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.event.Event;
-import javafx.event.EventType;
 
-import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.HashSet;
 import java.util.Stack;
 
 /**
- * Created by Rudy Gamberini on 1/19/2016.
+ * Data representation of the GOL board.
  */
-public class Board {
-    public IntegerProperty size;
-    public Rule rule;
+class Board {
+    public final IntegerProperty size;
+    public final Rule rule;
     //public State currentState;
-    private Stack<State> pastStates;
+    private final Stack<State> pastStates;
     public ObjectProperty<State> currentState;
 
-    public Board(int size, Rule rule) {
+    private Board(int size, Rule rule) {
         this.size = new SimpleIntegerProperty(size);
         this.rule = rule;
         this.currentState = new SimpleObjectProperty<>(new State(this));
@@ -36,7 +33,7 @@ public class Board {
         this.currentState = new SimpleObjectProperty<>(new State(this, initialState));
     }
 
-    public void resize(Observable o, Number oldVal, Number newVal) {
+    private void resize(Observable o, Number oldVal, Number newVal) {
         int newSize = newVal.intValue(), oldSize = oldVal.intValue();
         boolean[][] newState = new boolean[newSize][newSize];
         for (int x = 0; x < newSize; x++) {

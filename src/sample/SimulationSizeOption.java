@@ -4,13 +4,12 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 
 /**
- * Created by Rudy Gamberini on 2/18/2016.
+ * Dropdown ComboBox that enables you to change the size of the GOL board.
  */
-public class SimulationSizeOption extends Option {
-    private JFXComboBox<Integer> comboBox;
+class SimulationSizeOption extends Option {
+    private final JFXComboBox<Integer> comboBox;
     public SimulationSizeOption(GameOfLifeDisplay display) {
         super(display);
         comboBox = new JFXComboBox<>();
@@ -26,11 +25,11 @@ public class SimulationSizeOption extends Option {
         init("Simulation Size", comboBox);
     }
 
-    public void selectionChanged(Observable o, Integer oldVal, Integer newVal) {
+    private void selectionChanged(Observable o, Integer oldVal, Integer newVal) {
         display.size.set(newVal);
     }
 
-    public void sizeChanged(Observable o, Number oldVal, Number newVal) {
+    private void sizeChanged(Observable o, Number oldVal, Number newVal) {
         if(comboBox.getSelectionModel().getSelectedItem() != newVal.intValue())
             this.comboBox.getSelectionModel().select(newVal.intValue());
     }

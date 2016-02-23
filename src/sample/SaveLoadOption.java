@@ -10,11 +10,13 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Created by Rudy Gamberini on 2/22/2016.
+ * Option with two buttons that enables saving and loading to files.
+ * A keen eye will show that this doesn't extend the Option class,
+ * That's because I'm lazy and this was added at the end.
  */
-public class SaveLoadOption extends HBox {
-    FileChooser fileChooser;
-    GameOfLifeDisplay display;
+class SaveLoadOption extends HBox {
+    private final FileChooser fileChooser;
+    private final GameOfLifeDisplay display;
     public SaveLoadOption(GameOfLifeDisplay display) {
         super(16);
         this.setAlignment(Pos.CENTER);

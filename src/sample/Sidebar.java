@@ -5,14 +5,12 @@ import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -23,10 +21,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- * Created by Nick on 2/6/2016.
+ * Obvious name is obvious this is the SideBar that comes out on the drawer.
  */
-public class Sidebar extends VBox {
-    private StackPane header;
+class Sidebar extends VBox {
 
     public Sidebar(GameOfLifeDisplay display, JFXDrawer drawer) {
         VBox innerVBox = new VBox();
@@ -67,7 +64,7 @@ public class Sidebar extends VBox {
         subTitle.setAlignment(Pos.CENTER);
         subTitle.setTextAlignment(TextAlignment.CENTER);
 
-        header = new StackPane(headerBG, image, title, subTitle);
+        StackPane header = new StackPane(headerBG, image, title, subTitle);
         this.getChildren().add(header);
         header.setPrefHeight(150);
 
@@ -158,7 +155,7 @@ public class Sidebar extends VBox {
         this.getChildren().add(scrollPane);
     }
 
-    public JFXButton initBackButton() {
+    private JFXButton initBackButton() {
         MaterialIconView icon = new MaterialIconView();
         icon.setGlyphName("ARROW_BACK");
         icon.setSize("36");

@@ -2,11 +2,8 @@ package sample;
 
 import javafx.beans.property.SimpleBooleanProperty;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
- * Created by Rudy Gamberini on 1/19/2016.
+ * GOL Rules.
  */
 public class GameOfLife extends Rule {
     public GameOfLife() {
@@ -23,9 +20,7 @@ public class GameOfLife extends Rule {
         //If the cell is alive
         if (state.get(activeCell)) {
             //Death by starvation or overpopulation
-            if (aliveCount < 2 || aliveCount > 3)
-                return false;
-            else return true;
+            return !(aliveCount < 2 || aliveCount > 3);
         //A dead cell with three neighbors comes alive
         } else if (aliveCount == 3) return true;
 

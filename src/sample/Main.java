@@ -3,22 +3,12 @@ package sample;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.beans.Observable;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
-
-public class Main extends Application {
+class Main extends Application {
     private Stage primaryStage;
     public boolean[][] initialState = ImageParser.parseImage("blank.bmp");
 
@@ -47,7 +37,7 @@ public class Main extends Application {
         this.primaryStage.show();
     }
 
-    public void resize(Observable o, Number oldVal, Number newVal) {
+    private void resize(Observable o, Number oldVal, Number newVal) {
         this.primaryStage.setWidth(22*newVal.intValue() + 9);
         this.primaryStage.setHeight(22*newVal.intValue() + 100);
     }

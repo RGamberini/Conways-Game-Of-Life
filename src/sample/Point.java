@@ -1,7 +1,7 @@
 package sample;
 
 /**
- * Created by Rudy Gamberini on 1/19/2016.
+ * Extension of the point class to allow for adding other points to it.
  */
 public class Point extends java.awt.Point {
     public Point() {

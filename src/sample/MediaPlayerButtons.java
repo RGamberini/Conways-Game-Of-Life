@@ -1,27 +1,21 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRippler;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
-import de.jensd.fx.glyphs.materialicons.MaterialIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 
 /**
- * Created by Rudy Gamberini on 2/4/2016.
+ * Part of the ControlDisplay.
  */
-public class MediaPlayerButtons extends HBox {
-    public JFXButton STEPBACKWARD, PLAYPAUSE, STEPFORWARD;
+class MediaPlayerButtons extends HBox {
+    private final JFXButton PLAYPAUSE;
 
     public MediaPlayerButtons(GameOfLifeDisplay display) {
-        STEPBACKWARD = newButton("STEP_BACKWARD");
+        JFXButton STEPBACKWARD = newButton("STEP_BACKWARD");
         PLAYPAUSE = newButton("PLAY");
-        STEPFORWARD = newButton("STEP_FORWARD");
+        JFXButton STEPFORWARD = newButton("STEP_FORWARD");
 
         this.getChildren().addAll(STEPBACKWARD, PLAYPAUSE, STEPFORWARD);
         this.setAlignment(Pos.CENTER);

@@ -4,17 +4,15 @@ import com.jfoenix.controls.*;
 import javafx.scene.layout.*;
 
 /**
- * Created by Rudy Gamberini on 2/4/2016.
+ * The Play/Pause/Reverse Controls and Settings button.
  */
-public class ControlDisplay extends StackPane {
-    private JFXDrawer drawer;
-    private JFXToolbar toolBar;
-    private BorderPane borderPane;
+class ControlDisplay extends StackPane {
+    private final JFXDrawer drawer;
 
     public ControlDisplay(GameOfLifeDisplay display) {
-        borderPane = new BorderPane();
+        BorderPane borderPane = new BorderPane();
 
-        toolBar = new JFXToolbar();
+        JFXToolbar toolBar = new JFXToolbar();
         VBox tempVBox = new VBox(toolBar);
         borderPane.setTop(tempVBox);
 

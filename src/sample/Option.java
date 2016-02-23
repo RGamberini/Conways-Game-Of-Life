@@ -9,11 +9,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 
 /**
- * Created by Rudy Gamberini on 2/18/2016.
+ * Base class for options with text on the left and the actual option on the right.
  */
-public class Option extends HBox {
-    protected GameOfLifeDisplay display;
-    public Option(GameOfLifeDisplay display) {
+class Option extends HBox {
+    final GameOfLifeDisplay display;
+    Option(GameOfLifeDisplay display) {
         this.display = display;
     }
 
@@ -22,7 +22,7 @@ public class Option extends HBox {
         init(name, optionPicker);
     }
 
-    protected void init(String name, Node optionPicker) {
+    void init(String name, Node optionPicker) {
         Label label = new Label(name);
         //label.setFont(new Font());
         label.getStyleClass().add("colorPickerLabel");

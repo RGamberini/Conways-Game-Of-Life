@@ -1,35 +1,24 @@
 package sample;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.javafx.util.Utils;
 import javafx.animation.*;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.event.Event;
 import javafx.geometry.*;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Popup;
-import javafx.util.Duration;
-
-import java.util.Locale;
 
 /**
- * Created by Nick on 1/30/2016.
+ * Custom color picker, spent a lot of time on this.
  */
-public class ColorPicker extends Pane {
-    private JFXButton mainButton;
-    private Rectangle rectangle;
-    private Popup popup;
-    public ObjectProperty<Color> color;
-    private RudeColorPalette colorPalette;
-    private ParallelTransition show, hide;
+class ColorPicker extends Pane {
+    private final JFXButton mainButton;
+    private final Popup popup;
+    private final ObjectProperty<Color> color;
+    private final ParallelTransition show;
+    private final ParallelTransition hide;
 
 
     public ColorPicker(ObjectProperty<Color> defaultColor) {
@@ -42,7 +31,7 @@ public class ColorPicker extends Pane {
         color.addListener(((observable, oldValue, newValue) -> mainButton.setText(colorDisplayName(color.get()))));
 
 
-        rectangle = new Rectangle();
+        Rectangle rectangle = new Rectangle();
         rectangle.setHeight(25);
         rectangle.setWidth(25);
         rectangle.setStrokeWidth(0);
@@ -57,7 +46,7 @@ public class ColorPicker extends Pane {
         this.setMaxSize(121, 38);
         this.getChildren().add(mainButton);
 
-        colorPalette = new RudeColorPalette(color);
+        RudeColorPalette colorPalette = new RudeColorPalette(color);
         show = Animations.newCardAnimation(colorPalette);
         hide = Animations.newCardDestroyAnimation(colorPalette);
 
@@ -87,18 +76,17 @@ public class ColorPicker extends Pane {
     }
 
     // Lifted straight from JFXColorPickerSkin
-    static String colorDisplayName(Color c) {
+    private static String colorDisplayName(Color c) {
         if(c != null) {
-            String displayName = formatHexString(c);
-            return displayName;
+            return formatHexString(c);
         } else {
             return null;
         }
     }
 
     // Lifted straight from JFXColorPickerSkin
-    static String formatHexString(Color c) {
-        return c != null?String.format((Locale)null, "#%02x%02x%02x", new Object[]{Long.valueOf(Math.round(c.getRed() * 255.0D)), Long.valueOf(Math.round(c.getGreen() * 255.0D)), Long.valueOf(Math.round(c.getBlue() * 255.0D))}).toUpperCase():null;
+    private static String formatHexString(Color c) {
+        return c != null?String.format(null, "#%02x%02x%02x", new Object[]{Long.valueOf(Math.round(c.getRed() * 255.0D)), Long.valueOf(Math.round(c.getGreen() * 255.0D)), Long.valueOf(Math.round(c.getBlue() * 255.0D))}).toUpperCase():null;
     }
 
 }

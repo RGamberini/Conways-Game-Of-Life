@@ -4,25 +4,20 @@ import com.jfoenix.controls.JFXSlider;
 import javafx.beans.property.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.PopupControl;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- * Created by Nick on 1/28/2016.
+ * Surrounds the ColorPicker.
  */
-public class RudeColorPalette extends Pane {
-    IntegerProperty[] rgbValues;
+class RudeColorPalette extends Pane {
+    private final IntegerProperty[] rgbValues;
 
     public RudeColorPalette(ObjectProperty<Color> color) {
 

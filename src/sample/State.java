@@ -4,22 +4,22 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 /**
- * Created by Rudy Gamberini on 1/20/2016.
+ * LOVE THIS CLASS, represents a single state of the GOL board.
  */
-public class State {
-    private boolean[][] state;
-    public int size;
-    public Rule rule;
-    public HashSet<Point> activeCells;
+class State {
+    private final boolean[][] state;
+    private final int size;
+    private final Rule rule;
+    public final HashSet<Point> activeCells;
 
-    public State(int size, Rule rule) {
+    private State(int size, Rule rule) {
         this.state = new boolean[size][size];
         activeCells = new HashSet<>();
         this.size = size;
         this.rule = rule;
     }
 
-    public State(int size, Rule rule, boolean[][] initialState) {
+    private State(int size, Rule rule, boolean[][] initialState) {
         this(size, rule);
         for (int x = 0; x < initialState.length; x++) {
             for (int y = 0; y < initialState[x].length; y++) {
@@ -57,7 +57,7 @@ public class State {
         return inBounds(point) && state[point.x][point.y];
     }
 
-    public boolean inBounds(Point point) {
+    private boolean inBounds(Point point) {
         return point.x < state.length && point.y < state[0].length && point.x >= 0 && point.y >= 0;
     }
 

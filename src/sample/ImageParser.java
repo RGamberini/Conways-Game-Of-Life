@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Rudy Gamberini on 1/25/2016.
+ * Parses images into GOL boards and the reverse.
  */
-public class ImageParser {
+class ImageParser {
     public static boolean[][] parseImage(String imagename) {
         return parseImage(new File("resources\\" + imagename));
     }

@@ -2,18 +2,16 @@ package sample;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 /**
- * Created by Nick on 2/7/2016.
+ * Obviously the settings ("gear") icon on the ControlDisplay.
  */
-public class SettingsButton extends StackPane {
-    public MaterialDesignIconView icon;
+class SettingsButton extends StackPane {
+    public final MaterialDesignIconView icon;
     public SettingsButton(JFXDrawer drawer) {
         icon = new MaterialDesignIconView();
         icon.setGlyphName("SETTINGS");

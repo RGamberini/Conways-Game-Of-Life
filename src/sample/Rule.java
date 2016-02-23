@@ -2,10 +2,8 @@ package sample;
 
 import javafx.beans.property.BooleanProperty;
 
-import java.awt.*;
-
 /**
- * Created by Rudy Gamberini on 1/19/2016.
+ * Obviously a base Rule class.
  */
 public abstract class Rule {
     public BooleanProperty borderLoop;

@@ -8,10 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
- * Created by Rudy Gamberini on 2/22/2016.
+ * Button to make a new window.
  */
-public class BreakOutOption extends HBox {
-    private GameOfLifeDisplay display;
+class BreakOutOption extends HBox {
+    private final GameOfLifeDisplay display;
 
     public BreakOutOption(GameOfLifeDisplay display) {
         this.display = display;

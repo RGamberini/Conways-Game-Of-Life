@@ -8,10 +8,10 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 /**
- * Created by Nick on 1/31/2016.
+ * Static Animations class I pulled from my last project.
  */
-public class Animations {
-    public static Interpolator materialInterp = Interpolator.SPLINE(.62,.28,.23,.99);
+class Animations {
+    private static final Interpolator materialInterp = Interpolator.SPLINE(.62,.28,.23,.99);
 
     public static ParallelTransition newCardAnimation(Node node) {
         node.setTranslateX(-180);

@@ -5,11 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.Observable;
 import javafx.beans.property.*;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -19,17 +15,19 @@ import javafx.util.Duration;
  */
 public class GameOfLifeDisplay extends GridPane{
     private Rectangle[][] cellArray;
-    private Board model;
-    public BooleanProperty borderLoop;
-    public IntegerProperty size;
+    private final Board model;
+    public final BooleanProperty borderLoop;
+    public final IntegerProperty size;
 
     //Timer stuff
-    public BooleanProperty playing;
-    public Timeline timer;
-    public IntegerProperty time;
+    public final BooleanProperty playing;
+    private final Timeline timer;
+    public final IntegerProperty time;
 
-    public ObjectProperty<Color> aliveColor, deadColor, activeColor;
-    public ObjectProperty<State> currentState;
+    public final ObjectProperty<Color> aliveColor;
+    public final ObjectProperty<Color> deadColor;
+    public final ObjectProperty<Color> activeColor;
+    public final ObjectProperty<State> currentState;
 
     public GameOfLifeDisplay(Board model) {
         super();
@@ -80,7 +78,7 @@ public class GameOfLifeDisplay extends GridPane{
         });
     }
 
-    public void resize(Observable o, Number oldVal, Number newVal) {
+    private void resize(Observable o, Number oldVal, Number newVal) {
         this.setGridLinesVisible(false);
         this.getChildren().clear();
         int size = newVal.intValue();
@@ -102,7 +100,7 @@ public class GameOfLifeDisplay extends GridPane{
         this.update(model.currentState.get());
     }
 
-    public void update(State state) {
+    private void update(State state) {
         boolean[][] booleanState = state.getState();
         for (int x = 0; x < booleanState.length; x++) {
             for (int y = 0; y < booleanState[x].length; y++) {
@@ -119,7 +117,7 @@ public class GameOfLifeDisplay extends GridPane{
     }
 
     // Property Change Listeners
-    public void playingChange(Observable observable, boolean oldVal, boolean newVal) {
+    private void playingChange(Observable observable, boolean oldVal, boolean newVal) {
         if (newVal) timer.play();
         else timer.stop();
     }
