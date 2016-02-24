@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
@@ -34,6 +34,7 @@ class Board {
     }
 
     private void resize(Observable o, Number oldVal, Number newVal) {
+        this.clearHistory();
         int newSize = newVal.intValue(), oldSize = oldVal.intValue();
         boolean[][] newState = new boolean[newSize][newSize];
         for (int x = 0; x < newSize; x++) {
@@ -62,6 +63,10 @@ class Board {
             this.currentState.setValue(pastStates.pop());
         } catch (EmptyStackException ignored) {}
 
+    }
+
+    public void clearHistory() {
+        this.pastStates.clear();
     }
 
     public boolean get(Point point) {

@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import com.jfoenix.controls.JFXComboBox;
 import javafx.beans.Observable;

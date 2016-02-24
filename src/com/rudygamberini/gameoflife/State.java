@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import java.util.Arrays;
 import java.util.HashSet;

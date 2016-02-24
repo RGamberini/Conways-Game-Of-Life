@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -10,7 +10,7 @@ import javafx.util.Duration;
 /**
  * Static Animations class I pulled from my last project.
  */
-class Animations {
+public class Animations {
     private static final Interpolator materialInterp = Interpolator.SPLINE(.62,.28,.23,.99);
 
     public static ParallelTransition newCardAnimation(Node node) {

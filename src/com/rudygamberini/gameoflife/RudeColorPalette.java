@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import com.jfoenix.controls.JFXSlider;
 import javafx.beans.property.*;

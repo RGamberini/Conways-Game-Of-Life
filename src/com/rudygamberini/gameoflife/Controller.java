@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;

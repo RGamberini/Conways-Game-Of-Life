@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 /**
- * Created by Rudy Gamberini on 1/25/2016.
+ * Displays the board.
  */
 public class GameOfLifeDisplay extends GridPane{
     private Rectangle[][] cellArray;
@@ -114,6 +114,10 @@ public class GameOfLifeDisplay extends GridPane{
                 } catch (ArrayIndexOutOfBoundsException ignored) {}
             }
         }
+    }
+
+    public void clearHistory() {
+        model.clearHistory();
     }
 
     // Property Change Listeners

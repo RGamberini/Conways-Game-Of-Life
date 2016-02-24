@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

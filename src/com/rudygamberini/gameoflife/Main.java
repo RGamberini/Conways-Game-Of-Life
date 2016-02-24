@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
-class Main extends Application {
+public class Main extends Application {
     private Stage primaryStage;
     public boolean[][] initialState = ImageParser.parseImage("blank.bmp");
 

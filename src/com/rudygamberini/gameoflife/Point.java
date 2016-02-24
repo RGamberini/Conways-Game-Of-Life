@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 /**
  * Extension of the point class to allow for adding other points to it.

@@ -1,4 +1,4 @@
-package sample;
+package com.rudygamberini.gameoflife;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.Event;
@@ -45,6 +45,7 @@ class SaveLoadOption extends HBox {
     private void load(Event event) {
         fileChooser.setTitle("Load Board");
         File selectedFile = fileChooser.showOpenDialog(this.getScene().getWindow());
+        display.clearHistory();
 
         if (selectedFile != null) {
             boolean[][] state = ImageParser.parseImage(selectedFile);
